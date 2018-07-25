@@ -28,7 +28,8 @@
 			<div class="col">
 				Welcome to the Tensentric Demo Site!<br/>
 				<button class="btn btn-danger btn-large" onclick="testAlert()">Test Me!</button>
-				<button class="btn btn-success" onclick="sendPush()">Send Push Notification</button> <br>
+				<button class="btn btn-success" onclick="sendPush()">Send Push Notification</button><br/>
+				<button class="btn btn-warning" id="btnAdd" style="padding-top: 5px">Add to Homescreen</button>
 			</div>
 			</center>
 		</div>
@@ -54,10 +55,28 @@
 			}
 		})
 	}
+
+
+	if (window.matchMedia('(display-mode: standalone)').matches) {
+		btnAdd.style.display = 'none';		
+	}
 	
+	window.addEventListener('appinstalled', (e) => {
+		btnAdd.style.display = 'none'; 
+	}
+
+	let tempPrompt;
 	window.addEventListener('beforeinstallprompt', (e) => {
-		e.prompt();
+		e.preventDefault();
+		tempPrompt = e;
+		btnAdd.style.display = 'block';
 	});
+
+	btnAdd.addEventListener('click', (e) => {
+		btnAdd.style.display = 'none';
+		tempPrompt.prompt();
+		tempPrompt = null;
+ 	}
 
 
 	function testAlert(){
