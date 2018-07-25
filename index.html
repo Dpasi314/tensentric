@@ -40,6 +40,7 @@
 <!-- Register Service Worker -->
 <script>
 	var btnAdd = document.getElementById('btnAdd');
+	btnAdd.style.display = 'none';
 	if('serviceWorker' in navigator) {
  		window.addEventListener('load', () => {
 			navigator.serviceWorker.register('ServiceWorker.js', {
@@ -67,6 +68,7 @@
 
 	let tempPrompt;
 	window.addEventListener('beforeinstallprompt', (e) => {
+		alert('You can now install to homescreen!');
 		e.preventDefault();
 		tempPrompt = e;
 		btnAdd.style.display = 'block';
