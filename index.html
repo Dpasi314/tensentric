@@ -66,10 +66,10 @@
 	});
 
 	btnAdd.addEventListener('click', (e) => {
-		btnAdd.style.display = 'none';
 		tempPrompt.prompt();
 		tempPrompt.userChoice.then(result => { console.log(result); });
 		tempPrompt = null;
+
  	});
 
 
