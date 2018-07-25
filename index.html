@@ -25,7 +25,7 @@
 			<div class="col">
 				Welcome to the Tensentric Demo Site!<br/>
 				<button class="btn btn-danger btn-large" onclick="testAlert()">Test Me!</button>
-				<button class="btn btn-success" onclick="sendPush()">
+				<button class="btn btn-success" onclick="sendPush()">Send Push Notification</button>
 			</div>
 			</center>
 		</div>
@@ -62,7 +62,7 @@
 	            navigator.serviceWorker.getRegistration().then(reg => {
 	                var options = {
 	                    body: "Hello, World!",
-	                    icon: 'icon/icon512x512.png'
+	                    icon: 'icons/512x512.png'
 	                }
 	                reg.showNotification("Demo Push Notification", options);
 	            });
