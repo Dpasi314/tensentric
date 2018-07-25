@@ -53,6 +53,11 @@
 		})
 	}
 
+	
+	window.addEventListener('beforeinstallprompt', (e) => {
+	  e.prompt();
+	});
+
 	function testAlert(){
  		alert('Testing 123');
 	}
