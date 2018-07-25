@@ -36,7 +36,9 @@
 <script>
 	if('serviceWorker' in navigator) {
  		window.addEventListener('load', () => {
-			navigator.serviceWorker.register('wwwroot/ServiceWorker.js');
+			navigator.serviceWorker.register('wwwroot/ServiceWorker.js', {
+							 scope: '/tensentric/'
+							});
 		});
 	}
 	if(Notification.permission !== "granted") {
