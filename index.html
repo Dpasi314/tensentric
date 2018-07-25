@@ -40,7 +40,6 @@
 <!-- Register Service Worker -->
 <script>
 	var btnAdd = document.getElementById('btnAdd');
-	btnAdd.style.display = 'none';
 	if('serviceWorker' in navigator) {
  		window.addEventListener('load', () => {
 			navigator.serviceWorker.register('ServiceWorker.js', {
@@ -48,6 +47,7 @@
 							});
 		});
 	}
+
 	if(Notification.permission !== "granted") {
  		Notification.requestPermission(status => {
 			if(status == "granted")
@@ -62,9 +62,6 @@
 		btnAdd.style.display = 'none';		
 	}
 	
-	window.addEventListener('appinstalled', (e) => {
-		btnAdd.style.display = 'none'; 
-	});
 
 	let tempPrompt;
 	window.addEventListener('beforeinstallprompt', (e) => {
@@ -77,6 +74,7 @@
 	btnAdd.addEventListener('click', (e) => {
 		btnAdd.style.display = 'none';
 		tempPrompt.prompt();
+		tempPrompt.userChoice.then(result => { console.log(result); });
 		tempPrompt = null;
  	});
 
