@@ -1,2 +1,3 @@
-# tensentric
+# Tensentric
 Demo site for Tensentric
+
