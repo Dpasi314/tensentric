@@ -39,7 +39,7 @@
 			navigator.serviceWorker.register('wwwroot/ServiceWorker.js');
 		});
 	}
-	if(Notification.permission !=== "granted") {
+	if(Notification.permission !== "granted") {
  		Notification.requestPermission(status => {
 			if(status == "granted")
 			{
