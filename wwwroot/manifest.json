@@ -11,5 +11,6 @@
   ],
   "display": "standalone",
   "start_url": "/tensentric/",
-  "background_color" : "purple"
+  "background_color" : "purple",
+  "theme_color" : "purple"
 }
