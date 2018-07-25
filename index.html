@@ -31,4 +31,8 @@
 			navigator.serviceWorker.register('wwwroot/ServiceWorker.js');
 		});
 	}
+
+	Notification.requestPermission(status => {
+		console.log(status); 
+	})
 </script>
