@@ -5,6 +5,7 @@
   "icons": [
 	{"src" : "icons/512x512.png", "sizes": "512x512", "type": "images/png"},
 	{"src" : "icons/144x144.png", "sizes": "144x144", "type": "images/png"},
+	{"src" : "icons/144x144-bck.png", "sizes": "144x144", "type": "images/png"},
 	{"src" : "icons/192x192.png", "sizes": "192x192", "type": "images/png"},
 	{"src" : "icons/96x96.png", "sizes": "96x96", "type": "images/png"}  
   ],
