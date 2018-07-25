@@ -23,3 +23,12 @@
 </head>
 
 <button class="btn btn-success">Test</button>
+
+<!-- Register Service Worker -->
+<script>
+	if('serviceWorker' in navigator) {
+ 		window.addEventListener('load', () => {
+			navigator.serviceWorker.register('/wwwroot/ServiceWorker.js');
+		});
+	}
+</script>
