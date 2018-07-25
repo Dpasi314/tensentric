@@ -1,0 +1,8 @@
+{
+  "name": "Tensentric Demo",
+  "short_name": "Tensentric",
+  "description": "None",
+  "icons": [],
+  "display": "standalone",
+  "start_url": "/"
+}
