@@ -57,8 +57,7 @@
 		})
 	}
 
-
-	if (window.matchMedia('(display-mode: standalone)').matches) {
+	if(navigator.userAgent.match("(Android|iPhone)")) {
 		btnAdd.style.display = 'none';		
 	}
 	
