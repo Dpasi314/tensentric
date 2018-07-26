@@ -64,6 +64,7 @@
 	}	
 	
 	if(navigator.userAgent.match('(iPhone | iPad)')) {
+		alert('You must be using an iPhone!');
 		document.getElementById('btnAdd').disabled = true;
 		document.getElementById('pushBtn').disabled = true;
 		document.getElementById('phoneInfo').innerHTML += "Looks like you're using an iPhone. Some of this technology isn't supported by Apple yet!";
@@ -71,7 +72,7 @@
 
 	let tempPrompt;
 	window.addEventListener('beforeinstallprompt', (e) => {
-		alert('You can now install to homescreen!');
+		alert('Use the Add to Homescreen button to install this app!');
 		e.preventDefault();
 		tempPrompt = e;
 		btnAdd.style.display = 'block';
