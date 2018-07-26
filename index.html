@@ -48,7 +48,6 @@
 	var btnAdd = document.getElementById('btnAdd');
 	if('serviceWorker' in navigator) {
 		alert('Service Worker Registered');
-		alert(navigator.userAgent);
  		window.addEventListener('load', () => {
 			navigator.serviceWorker.register('ServiceWorker.js', {
 				scope: '/tensentric/'
@@ -56,13 +55,28 @@
 		});
 	}
 
-	if(Notification.permission !== "granted") {
+	if(!navigator.userAgent.match('(iPhone)')) {
  		Notification.requestPermission(status => {
 			if(status == "granted")
 			{
  				alert('You gave permission for notifications!');
 			}
-		})
+		});
+
+		let tempPrompt;
+		window.addEventListener('beforeinstallprompt', (e) => {
+			alert('Use the Add to Homescreen button to install this app!');
+			e.preventDefault();
+			tempPrompt = e;
+			btnAdd.style.display = 'block';
+		});
+	
+		btnAdd.addEventListener('click', (e) => {
+			tempPrompt.prompt();
+			tempPrompt.userChoice.then(result => { console.log(result); });
+			tempPrompt = null;
+	
+	 	});
 	}	
 
 	
@@ -73,21 +87,7 @@
 		document.getElementById('phoneInfo').innerHTML += "Looks like you're using an iPhone. Some of this technology isn't supported by Apple yet!";
 	}
 
-	let tempPrompt;
-	window.addEventListener('beforeinstallprompt', (e) => {
-		alert('Use the Add to Homescreen button to install this app!');
-		e.preventDefault();
-		tempPrompt = e;
-		btnAdd.style.display = 'block';
-	});
-
-	btnAdd.addEventListener('click', (e) => {
-		tempPrompt.prompt();
-		tempPrompt.userChoice.then(result => { console.log(result); });
-		tempPrompt = null;
-
- 	});
-
+	
 
 	function testAlert() {
  		alert('You just sent an alert!');
