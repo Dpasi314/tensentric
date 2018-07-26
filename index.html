@@ -28,15 +28,13 @@
 			<div class="col">
 				Welcome to the Tensentric Demo Site!<br/>
 				<button class="btn btn-danger btn-large" onclick="testAlert()">Test Me!</button>
-				<button class="btn btn-success" id="pushBtn" onclick="sendPush()">Send Push Notification</button>
+				<button class="btn btn-success" id="pushBtn" onclick="sendPush()" disabled>Send Push Notification</button>
 			</div>
 			<div class="col" style="padding-top: 5px">
 				<button class="btn btn-warning" id="btnAdd" style="padding-top: 10px">Add to Homescreen</button>
 			</div>
 			<div class="col" style="padding-top: 10px">
-				<h3 id="phoneInfo">
-
-				</h3>
+				<h4 id="phoneInfo"></h4>
 			</div>
 			</center>
 		</div>
@@ -64,7 +62,7 @@
  		Notification.requestPermission(status => {
 			if(status == "granted")
 			{
- 				alert('You gave permission for notifications!');
+				document.getElementById('pushBtn').disabled = false;
 			}
 		});
 
