@@ -35,6 +35,7 @@
 			</div>
 			<div class="col" style="padding-top: 10px">
 				<h4 id="phoneInfo"></h4>
+				<p class="lead" id="userAgent"></p>
 			</div>
 			</center>
 		</div>
@@ -51,6 +52,7 @@
 	}
 	if('serviceWorker' in navigator) {
 		alert('Service Worker Registered');
+		document.getElementById('userAgent').innerHTML += navigator.userAgent;
  		window.addEventListener('load', () => {
 			navigator.serviceWorker.register('ServiceWorker.js', {
 				scope: '/tensentric/'
