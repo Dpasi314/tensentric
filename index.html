@@ -28,10 +28,15 @@
 			<div class="col">
 				Welcome to the Tensentric Demo Site!<br/>
 				<button class="btn btn-danger btn-large" onclick="testAlert()">Test Me!</button>
-				<button class="btn btn-success" onclick="sendPush()">Send Push Notification</button>
+				<button class="btn btn-success" id="pushBtn" onclick="sendPush()">Send Push Notification</button>
 			</div>
 			<div class="col" style="padding-top: 5px">
-				<button class="btn btn-warning" id="btnAdd" style="padding-top: 5px">Add to Homescreen</button>
+				<button class="btn btn-warning" id="btnAdd" style="padding-top: 10px">Add to Homescreen</button>
+			</div>
+			<div class="col" style="padding-top: 10px">
+				<h3 id="phoneInfo">
+
+				</h3>
 			</div>
 			</center>
 		</div>
@@ -57,6 +62,12 @@
 			}
 		})
 	}	
+	
+	if(navigator.userAgent.match('(iPhone | iPad)')) {
+		document.getElementById('btnAdd').disabled = true;
+		document.getElementById('pushBtn').disabled = true;
+		document.getElementById('phoneInfo').innerHTML += "Looks like you're using an iPhone. Some of this technology isn't supported by Apple yet!";
+	}
 
 	let tempPrompt;
 	window.addEventListener('beforeinstallprompt', (e) => {
