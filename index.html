@@ -48,6 +48,7 @@
 	var btnAdd = document.getElementById('btnAdd');
 	if('serviceWorker' in navigator) {
 		alert('Service Worker Registered');
+		alert(navigator.userAgent);
  		window.addEventListener('load', () => {
 			navigator.serviceWorker.register('ServiceWorker.js', {
 				scope: '/tensentric/'
@@ -64,7 +65,6 @@
 		})
 	}	
 
-	alert(navigator.userAgent);
 	
 	if(navigator.userAgent.match('(iPhone | iPad)')) {
 		alert('You must be using an iPhone!');
