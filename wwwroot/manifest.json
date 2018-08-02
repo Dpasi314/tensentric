@@ -1,17 +1,16 @@
 {
-  "name": "Tensentric Demo",
-  "short_name": "Tensentric",
+  "name": "Demo",
+  "short_name": "Demo",
   "description": "None",
   "icons": [
 	{"src" : "icons/512x512.png", "sizes": "512x512", "type": "image/png", "Density": 1},
 	{"src" : "icons/144x144.png", "sizes": "144x144", "type": "image/png", "Density": 1},
 	{"src" : "icons/144x144-bck.png", "sizes": "144x144", "type": "image/png", "Density": 1},
 	{"src" : "icons/192x192.png", "sizes": "192x192", "type": "image/png", "Density": 1},
-	{"src" : "icons/120x120.png", "sizes": "120x120", "type": "image/png", "Density": 1},
 	{"src" : "icons/96x96.png", "sizes": "96x96", "type": "image/png", "Density": 1}  
   ],
   "display": "standalone",
   "start_url": "/tensentric/index.html",
-  "background_color" : "purple",
-  "theme_color" : "purple"
+  "background_color" : "green",
+  "theme_color" : "green"
 }
