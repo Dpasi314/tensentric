@@ -30,9 +30,7 @@
 				<button class="btn btn-danger btn-large" onclick="testAlert()">Test Me!</button>
 				<button class="btn btn-success" id="pushBtn" onclick="sendPush()" disabled>Send Push Notification</button>
 			</div>
-			<div class="col" style="padding-top: 5px">
-				<button class="btn btn-warning" id="btnAdd" style="padding-top: 10px">Add to Homescreen</button>
-			</div>
+
 			<div class="col" style="padding-top: 10px">
 				<h4 id="phoneInfo"></h4>
 				<p class="lead" id="userAgent"></p>
@@ -50,6 +48,7 @@
 			document.getElementById('pushBtn').disabled = true;
 			document.getElementById('phoneInfo').innerHTML += "Looks like you're using an iPhone. Some of this technology isn't supported by Apple yet!";
 	}
+
 	if('serviceWorker' in navigator) {
 		alert('Service Worker Registered');
 		document.getElementById('userAgent').innerHTML += navigator.userAgent;
@@ -70,24 +69,10 @@
 
 		let tempPrompt;
 		window.addEventListener('beforeinstallprompt', (e) => {
-			alert('Use the Add to Homescreen button to install this app!');
-			e.preventDefault();
-			tempPrompt = e;
-			btnAdd.style.display = 'block';
+			e.prompt();
 		});
 	
-		btnAdd.addEventListener('click', (e) => {
-			tempPrompt.prompt();
-			tempPrompt.userChoice.then(result => { console.log(result); });
-			tempPrompt = null;
-	
-	 	});
 	}	
-
-	
-	
-
-	
 
 	function testAlert() {
  		alert('You just sent an alert!');
