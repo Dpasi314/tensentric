@@ -85,8 +85,15 @@
 	}	
 
 	
-	
-
+	if(navigator.storage & navigator.storage.persist) {
+ 		navigator.storage.persist().then(granted => {
+			if(granted) {
+ 				alert("Storage will persist");
+			} else {
+ 				alert("Storage will NOT persist");
+			}
+		});
+	};
 	
 
 	function testAlert() {
