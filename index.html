@@ -71,7 +71,7 @@
 
 	function test() {
 		var blob = new Blob(["Hello, world!"], {type: "text/plain;charset=utf-8"});
-		FileSaver.saveAs(blob, "test.txt");
+		saveAs(blob, "test.txt");
 	}
 
 
