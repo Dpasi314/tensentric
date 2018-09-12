@@ -23,27 +23,7 @@
 	</head>
 	
 	<body>
-		<div class="container">
-			<center>
-			<div class="col">
-				Welcome to the Tensentric Demo Site!<br/>
-				<button class="btn btn-danger btn-large" onclick="testAlert()">Test Me!</button>
-				<button class="btn btn-success" id="pushBtn" onclick="sendPush()" disabled>Send Push Notification</button>
-			</div>
-			<div class="col" style="padding-top: 5px">
-				<button class="btn btn-warning" id="btnAdd" style="padding-top: 10px">Add to Homescreen</button>
-			</div>
-			<div class="col" style="padding-top: 10px">
-				<h4 id="phoneInfo"></h4>
-				<p class="lead" id="userAgent"></p>
-			</div>
-			</center>
-		</div>
-
-		<div class="container">
-			<input type="text" placeholder="Text Here" value="Text" id="ipt"/>
-			<button id="btn" onclick="test()">Create</button>
-		</div>
+		Nothing to see here
 	</body>
 </html>
 
@@ -57,15 +37,7 @@
             else
                 alert("Storage may be cleared by the UA under storage pressure.");
         });
-	var btnAdd = document.getElementById('btnAdd');
-	var btnCreate = document.getElementById('btn');
 
-
-	if(navigator.userAgent.match('(iPhone | iPad)')) {
-			document.getElementById('btnAdd').disabled = true;
-			document.getElementById('pushBtn').disabled = true;
-			document.getElementById('phoneInfo').innerHTML += "Looks like you're using an iPhone. Some of this technology isn't supported by Apple yet!";
-	}
 	if('serviceWorker' in navigator) {
 		alert('Service Worker Registered');
 		document.getElementById('userAgent').innerHTML += navigator.userAgent;
@@ -75,56 +47,4 @@
 			});
 		});
 	}
-
-	function test() {
-		var blob = new Blob(["Hello, world!"], {type: "text/plain;charset=utf-8"});
-		saveAs(blob, "test.txt");
-	}
-
-
-	if(!navigator.userAgent.match('(iPhone)')) {
- 		Notification.requestPermission(status => {
-			if(status == "granted")
-			{
-				document.getElementById('pushBtn').disabled = false;
-			}
-		});
-
-		let tempPrompt;
-		window.addEventListener('beforeinstallprompt', (e) => {
-			alert('Use the Add to Homescreen button to install this app!');
-			e.preventDefault();
-			tempPrompt = e;
-			btnAdd.style.display = 'block';
-		});
-	
-		btnAdd.addEventListener('click', (e) => {
-			tempPrompt.prompt();
-			tempPrompt.userChoice.then(result => { console.log(result); });
-			tempPrompt = null;
-	
-	 	});
-	}	
-
-	
-	
-
-	function testAlert() {
- 		alert('You just sent an alert!');
-	}
-
-	function sendPush()
-	{
-	 
-	 if (Notification.permission == 'granted') {
-	            navigator.serviceWorker.getRegistration().then(reg => {
-	                var options = {
-	                    body: "Hello, World!",
-	                    icon: 'wwwroot/icons/512x512.png'
-	                }
-	                reg.showNotification("Demo Push Notification", options);
-	            });
-	        }
-	}
-	
 </script>
