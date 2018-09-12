@@ -26,7 +26,6 @@
 
 	if('serviceWorker' in navigator) {
 		alert('Service Worker Registered');
-		document.getElementById('userAgent').innerHTML += navigator.userAgent;
  		window.addEventListener('load', () => {
 			navigator.serviceWorker.register('ServiceWorker.js', {
 				scope: '/tensentric/'
