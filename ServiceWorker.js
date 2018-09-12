@@ -73,9 +73,4 @@ self.addEventListener('pushsubscriptionchange', function (event) {
             })
     );
 });
-
-function setInfo() {
-	$.get('test.html', null, function(res) {
-		$(res).getElementById('test').value = 'Hello!';
-	})
 }
