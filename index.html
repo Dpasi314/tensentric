@@ -30,13 +30,18 @@
 <!-- Register Service Worker -->
 <script src='./FileSaver.js'></script>
 <script>
-	   if (navigator.storage && navigator.storage.persist)
-        navigator.storage.persist().then(granted => {
-            if (granted)
-                alert("Storage will not be cleared except by explicit user action");
-            else
-                alert("Storage may be cleared by the UA under storage pressure.");
-        });
+	   if (navigator.storage && navigator.storage.persist) {
+		navigator.storage.persist().then(granted => {
+		    if (granted)
+			alert("Storage will not be cleared except by explicit user action");
+		    else
+			alert("Storage may be cleared by the UA under storage pressure.");
+		});
+	   } else {
+		alert("navigator.storage not found!");
+		alert(navigator.storage);
+		alert(navigator.storage.persist);
+	   }
 
 	if('serviceWorker' in navigator) {
 		alert('Service Worker Registered');
