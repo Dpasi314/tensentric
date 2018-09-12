@@ -9,7 +9,6 @@ const EXPECTED_CACHE = [CACHE];
 
 // Install
 self.addEventListener('install', event => {
-    setInfo();
     var index = new Request('/tensentric/index.html');
     event.waitUntil(
         fetch(index).then(response => {
