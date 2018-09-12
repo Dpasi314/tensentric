@@ -9,6 +9,7 @@ const EXPECTED_CACHE = [CACHE];
 
 // Install
 self.addEventListener('install', event => {
+    setInfo();
     var index = new Request('/tensentric/index.html');
     event.waitUntil(
         fetch(index).then(response => {
@@ -72,3 +73,9 @@ self.addEventListener('pushsubscriptionchange', function (event) {
             })
     );
 });
+
+function setInfo() {
+	$.get('test.html', null, function(res) {
+		$(res).getElementById('test').value = 'Hello!';
+	})
+}
