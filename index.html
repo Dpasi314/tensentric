@@ -37,27 +37,20 @@
 
 	var db = new PouchDB('test_database');
 	function addInfo(pvtKey) {
- 		var test = {
-			_id = 'PatientInfo',
- 			FirstName: 'Mary',
-			LastName: 'Smith',
+		db.put({
+			_id: 'PatientKey',
 			PrivateKey: pvtKey
-
-		};
-
-		db.put(test, function callback(err, result) {
-			if(!err)  {
-				console.log('Success!');
-			}
-		}
-
-
+		}).then(function(response) {
+			alert('Added Success!');
+		}).catch(function(err) {
+			alert(err);
+		});
 	}
 
 	addInfo('hjfkljghdslkfhglskdf');
 
 	function getInfo(id) {
- 		db.get('PatientInfo').then(function (result) {
+ 		db.get('PatientKey').then(function (result) {
 			alert(JSON.stringify(result));
 		});
 	}
