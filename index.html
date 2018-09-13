@@ -6,10 +6,12 @@
 	
 	<body>
 		Nothing to see here...
+		<div id="result"></div>
 	</body>
 </html>
 
 <!-- Register Service Worker -->
+<script src="~/pouchdb-7.0.0.min.js"></script>
 <script>
 	   if (navigator.storage && navigator.storage.persist) {
 		navigator.storage.persist().then(granted => {
@@ -33,50 +35,32 @@
 		});
 	}
 
-	var indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB;
+	var db = new PouchDB('test_database');
+	function addInfo(pvtKey) {
+ 		var test = {
+			_id = 'PatientInfo',
+ 			FirstName: 'Mary',
+			LastName: 'Smith',
+			PrivateKey: pvtKey
 
-	var db;
-	var request = indexedDB.open("TestDatabase");
-	request.onerror = function(evt) {
-	  console.log("Database error code: " + evt.target.errorCode);
-	};
-	request.onsuccess = function(evt) {
-	  db = request.result;
-	};
+		};
 
-	var peopleData = [
-	    { name: "John Dow", email: "john@company.com" },
-	    { name: "Don Dow", email: "don@company.com" }
-	];
-	 
-	function initDb() {
-	    var request = indexedDB.open("PeopleDB", 1);  
-	    request.onsuccess = function (evt) {
-	        db = request.result;                                                            
-	    };
-	 
-	    request.onerror = function (evt) {
-	        console.log("IndexedDB error: " + evt.target.errorCode);
-	    };
-	 
-	    request.onupgradeneeded = function (evt) {                   
-	        var objectStore = evt.currentTarget.result.createObjectStore("people", 
-	                                     { keyPath: "id", autoIncrement: true });
-	 
-	        objectStore.createIndex("name", "name", { unique: false });
-	        objectStore.createIndex("email", "email", { unique: true });
-	 
-	        for (i in peopleData) {
-	            objectStore.add(peopleData[i]);
-	        }
-	    };
+		db.put(test, function callback(err, result) {
+			if(!err)  {
+				console.log('Success!');
+			}
+		}
+
+
 	}
-	var IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction;
-	var transaction = db.transaction("people", IDBTransaction.READ_WRITE);
-	var objectStore = transaction.objectStore("people");                    
-	var request = objectStore.add({ name: name, email: email });
-	request.onsuccess = function (evt) {
-	    alert('Success!');
-	};
+
+	addInfo('hjfkljghdslkfhglskdf');
+
+	function getInfo(id) {
+ 		db.get('PatientInfo').then(function (result) {
+			alert(JSON.stringify(result));
+		});
+	}
+	
 
 </script>
