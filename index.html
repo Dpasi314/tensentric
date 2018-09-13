@@ -7,7 +7,9 @@
 	<body>
 		Nothing to see here...
 		<div id="result"></div>
-		<button onClick="getInfo()">Click Me</button>
+		<input id="inputVal" type="text"/>
+		<button onClick="addInfo()">Add Info</button>
+		<button onClick="getInfo()">View Data</button>
 	</body>
 </html>
 
@@ -37,21 +39,21 @@
 	}
 
 	var db = new PouchDB('test_database');
-	function addInfo(pvtKey) {
+	function addInfo() {
+		var inpt = document.querySelector('inputVal').value
 		db.put({
-			_id: 'PatientKey-Test',
-			PrivateKey: pvtKey
+			_id: 'PatientKey-Test-'+inpt,
+			PrivateKey: inpt
 		}).then(function(response) {
 			alert('Added Success!');
 		}).catch(function(err) {
-			alert(err);
+			alert("ERROR:" err);
 		});
 	}
 
-	addInfo('hjfkljghdslkfhglskdf');
-
 	function getInfo() {
- 		db.get('PatientKey-Test').then(function (result) {
+		var inpt = document.querySelector('inputVal').value
+ 		db.get('PatientKey-Test-'+inpt).then(function (result) {
 			alert(JSON.stringify(result));
 		});
 	}
