@@ -40,7 +40,7 @@
 
 	var db = new PouchDB('test_database');
 	function addInfo() {
-		var inpt = document.querySelector('inputVal').value
+		var inpt = document.getElementById('inputVal').value
 		db.put({
 			_id: 'PatientKey-Test-'+inpt,
 			PrivateKey: inpt
