@@ -39,7 +39,7 @@
 	var db = new PouchDB('test_database');
 	function addInfo(pvtKey) {
 		db.put({
-			_id: 'PatientKey',
+			_id: 'PatientKey-Test',
 			PrivateKey: pvtKey
 		}).then(function(response) {
 			alert('Added Success!');
@@ -51,7 +51,7 @@
 	addInfo('hjfkljghdslkfhglskdf');
 
 	function getInfo() {
- 		db.get('PatientKey').then(function (result) {
+ 		db.get('PatientKey-Test').then(function (result) {
 			alert(JSON.stringify(result));
 		});
 	}
