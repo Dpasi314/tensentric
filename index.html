@@ -7,6 +7,7 @@
 	<body>
 		Nothing to see here...
 		<div id="result"></div>
+		<button onClick="getInfo()">Click Me</button>
 	</body>
 </html>
 
@@ -49,7 +50,7 @@
 
 	addInfo('hjfkljghdslkfhglskdf');
 
-	function getInfo(id) {
+	function getInfo() {
  		db.get('PatientKey').then(function (result) {
 			alert(JSON.stringify(result));
 		});
