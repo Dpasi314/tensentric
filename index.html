@@ -33,34 +33,50 @@
 		});
 	}
 
-	if(self.indexedDB) {
- 		alert('IndexDB Support!');
-		var request = self.indexedDB.open('EXAMPLE_DB', 1);
-		request.onsuccess = function(event) {
-		    // some sample products data
-		    var products = [
-		        {id: 1, name: 'Red Men T-Shirt', price: '$3.99'},
-		        {id: 2, name: 'Pink Women Shorts', price: '$5.99'},
-		        {id: 3, name: 'Nike white Shoes', price: '$300'}
-		    ];
-		// get database from event
-		    var db = event.target.result;
-		// create transaction from database
-		    var transaction = db.transaction('products', 'readwrite');
-		// add success event handleer for transaction
-		    // you should also add onerror, onabort event handlers
-		    transaction.onsuccess = function(event) {
-		        console.log('[Transaction] ALL DONE!');
-		    };
-		// get store from transaction
-		    // returns IDBObjectStore instance
-		    var productsStore = transaction.objectStore('products');
-		// put products data in productsStore
-		    products.forEach(function(product){
-		        var db_op_req = productsStore.add(product); // IDBRequest
-		    });
-		};
-	} else {
- 		alert('Oh no!');
+	var indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB;
+
+	var db;
+	var request = indexedDB.open("TestDatabase");
+	request.onerror = function(evt) {
+	  console.log("Database error code: " + evt.target.errorCode);
+	};
+	request.onsuccess = function(evt) {
+	  db = request.result;
+	};
+
+	var peopleData = [
+	    { name: "John Dow", email: "john@company.com" },
+	    { name: "Don Dow", email: "don@company.com" }
+	];
+	 
+	function initDb() {
+	    var request = indexedDB.open("PeopleDB", 1);  
+	    request.onsuccess = function (evt) {
+	        db = request.result;                                                            
+	    };
+	 
+	    request.onerror = function (evt) {
+	        console.log("IndexedDB error: " + evt.target.errorCode);
+	    };
+	 
+	    request.onupgradeneeded = function (evt) {                   
+	        var objectStore = evt.currentTarget.result.createObjectStore("people", 
+	                                     { keyPath: "id", autoIncrement: true });
+	 
+	        objectStore.createIndex("name", "name", { unique: false });
+	        objectStore.createIndex("email", "email", { unique: true });
+	 
+	        for (i in peopleData) {
+	            objectStore.add(peopleData[i]);
+	        }
+	    };
 	}
+	var IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction;
+	var transaction = db.transaction("people", IDBTransaction.READ_WRITE);
+	var objectStore = transaction.objectStore("people");                    
+	var request = objectStore.add({ name: name, email: email });
+	request.onsuccess = function (evt) {
+	    alert('Success!');
+	};
+
 </script>
