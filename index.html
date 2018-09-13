@@ -52,7 +52,7 @@
 	}
 
 	function getInfo() {
-		var inpt = document.querySelector('inputVal').value
+		var inpt = document.getElementById('inputVal').value
  		db.get('PatientKey-Test-'+inpt).then(function (result) {
 			alert(JSON.stringify(result));
 		});
